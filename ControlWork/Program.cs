@@ -39,10 +39,15 @@ void InputArray(string[] array)
 string[] InputArray2(string[] array, int numb)
 {
     string[] arr = new string[numb];
+    string temp;
     for (int i = 0; i < numb; i++)
     {
-        
+        temp = array[new Random().Next(0, array.Length)];
+        while ((i == 1 && temp == arr[i -1]) || (i == 2 && temp == arr[i - 1]) || (i == 2 && temp == arr[i - 2]))
+            continue;
+        arr[i] = temp;
     }
+    return arr;
 }
 
 Console.Clear();
@@ -51,10 +56,12 @@ Console.WriteLine("число должно быть больше или равн
 Console.WriteLine();
 int n = int.Parse(Console.ReadLine()!);
 n = CheckNumber(n);
-string[] array = new string[n];
+string[] array= new string[n];
 InputArray(array);
 Console.WriteLine();
 Console.WriteLine($"Начальный массив: [{string.Join(", ", array)}]");
 Console.WriteLine();
 n = new Random().Next(0, 4);
-InputArray2(array, n);
+string[] newArray = InputArray2(array, n);
+Console.WriteLine($"Итоговый массив: [{string.Join(", ", newArray)}]");
+Console.WriteLine();
