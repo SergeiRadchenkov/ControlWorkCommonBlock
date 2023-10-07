@@ -39,13 +39,13 @@ void InputArray(string[] array)
 string[] InputArray2(string[] array, int numb)
 {
     string[] arr = new string[numb];
-    string temp;
+    int number;
     for (int i = 0; i < numb; i++)
     {
-        temp = array[new Random().Next(0, array.Length)];
-        while ((i == 1 && temp == arr[i -1]) || (i == 2 && temp == arr[i - 1]) || (i == 2 && temp == arr[i - 2]))
-            continue;
-        arr[i] = temp;
+        number = new Random().Next(i, array.Length);
+        arr[i] = array[number];
+        array[number] = array[i];
+        array[i] = arr[i];
     }
     return arr;
 }
