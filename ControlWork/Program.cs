@@ -61,7 +61,7 @@ InputArray(array);
 Console.WriteLine();
 Console.WriteLine($"Начальный массив: [{string.Join(", ", array)}]");
 Console.WriteLine();
-n = new Random().Next(0, 4);
+n = new Random().Next(1, 4);
 string[] newArray = InputArray2(array, n);
 Console.WriteLine($"Итоговый массив: [{string.Join(", ", newArray)}]");
 Console.WriteLine();
