@@ -8,20 +8,6 @@
 лучше обойтись исключительно массивами.
 */
 
-int CheckNumber(int numb)
-{
-    while (numb < 3)
-    {
-        Console.WriteLine();
-        Console.WriteLine($"Число {numb} меньше 3");
-        Console.WriteLine("Задать массив не получится!");
-        Console.WriteLine("Введите количество элементов массива: ");
-        Console.WriteLine();
-        numb = int.Parse(Console.ReadLine()!);
-    }
-    return numb;
-}
-
 void InputArray(string[] array)
 {
     string num;
@@ -36,32 +22,40 @@ void InputArray(string[] array)
     }
 }
 
-string[] InputArray2(string[] array, int numb)
+int InputArray2(string[] array, string[] arr, int numb)
 {
-    string[] arr = new string[numb];
-    int number;
+    int count = 0;
     for (int i = 0; i < numb; i++)
     {
-        number = new Random().Next(i, array.Length);
-        arr[i] = array[number];
-        array[number] = array[i];
-        array[i] = arr[i];
+        if (array[i].Length <= 3)
+        {
+            arr[count] = array[i];
+            count++;
+        }
     }
-    return arr;
+    return count;
+}
+
+void PrintArray(string[] arr, int numb)
+{
+    string[] newArray = new string[numb];
+    Console.WriteLine();
+    for (int i = 0; i < numb; i++)
+    {
+        newArray[i] = arr[i];
+    }
+    Console.WriteLine($"Итоговый массив: [{string.Join(", ", newArray)}]");
 }
 
 Console.Clear();
-Console.WriteLine("Введите количество элементов массива,");
-Console.WriteLine("число должно быть больше или равно 3: ");
+Console.WriteLine("Введите количество элементов массива: ");
 Console.WriteLine();
 int n = int.Parse(Console.ReadLine()!);
-n = CheckNumber(n);
 string[] array= new string[n];
 InputArray(array);
 Console.WriteLine();
 Console.WriteLine($"Начальный массив: [{string.Join(", ", array)}]");
-Console.WriteLine();
-n = new Random().Next(0, 4);
-string[] newArray = InputArray2(array, n);
-Console.WriteLine($"Итоговый массив: [{string.Join(", ", newArray)}]");
+string[] newArray = new string[n];
+int number = InputArray2(array, newArray, n);
+PrintArray(newArray, number);
 Console.WriteLine();
